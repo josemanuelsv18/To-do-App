@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables CSS personalizadas */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --secondary: #64748b;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #06b6d4;
+    --light: #f8fafc;
+    --dark: #1e293b;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos base mejorados */
+@layer base {
+    body {
+        @apply bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-semibold text-gray-900 dark:text-white;
+    }
+}
+
+/* Componentes personalizados */
+@layer components {
+    /* Tarjetas de tareas mejoradas */
+    .task-card {
+        @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden;
+        box-shadow: var(--card-shadow);
+    }
+    
+    .task-card:hover {
+        @apply transform -translate-y-1;
+        box-shadow: var(--card-shadow-lg);
+    }
+    
+    .task-card-pending {
+        @apply border-l-4 border-l-yellow-400 bg-gradient-to-r from-yellow-50 to-white dark:from-yellow-900/20 dark:to-gray-800;
+    }
+    
+    .task-card-completed {
+        @apply border-l-4 border-l-green-400 bg-gradient-to-r from-green-50 to-white dark:from-green-900/20 dark:to-gray-800;
+    }
+    
+    .task-card-deleted {
+        @apply border-l-4 border-l-red-400 bg-gradient-to-r from-red-50 to-white dark:from-red-900/20 dark:to-gray-800;
+    }
+    
+    /* Botones mejorados */
+    .btn {
+        @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm;
+    }
+    
+    .btn-primary {
+        @apply bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500 shadow-blue-200;
+    }
+    
+    .btn-secondary {
+        @apply bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500;
+    }
+    
+    .btn-success {
+        @apply bg-green-600 hover:bg-green-700 text-white focus:ring-green-500;
+    }
+    
+    .btn-warning {
+        @apply bg-yellow-600 hover:bg-yellow-700 text-white focus:ring-yellow-500;
+    }
+    
+    .btn-danger {
+        @apply bg-red-600 hover:bg-red-700 text-white focus:ring-red-500;
+    }
+    
+    .btn-outline {
+        @apply bg-transparent border-2 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600;
+    }
+    
+    /* Estados de tareas */
+    .status-badge {
+        @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+    }
+    
+    .status-pending {
+        @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
+    }
+    
+    .status-completed {
+        @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+    }
+    
+    .status-deleted {
+        @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+    }
+    
+    /* Filtros mejorados */
+    .filter-tab {
+        @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 border border-transparent relative overflow-hidden;
+    }
+    
+    .filter-tab:before {
+        content: '';
+        @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] skew-x-12 transition-transform duration-700;
+    }
+    
+    .filter-tab:hover:before {
+        @apply translate-x-[100%];
+    }
+    
+    .filter-tab.active {
+        @apply text-white shadow-lg transform scale-105;
+    }
+    
+    .filter-all.active {
+        @apply bg-gradient-to-r from-blue-500 to-blue-600;
+    }
+    
+    .filter-pending.active {
+        @apply bg-gradient-to-r from-yellow-500 to-yellow-600;
+    }
+    
+    .filter-completed.active {
+        @apply bg-gradient-to-r from-green-500 to-green-600;
+    }
+    
+    .filter-deleted.active {
+        @apply bg-gradient-to-r from-red-500 to-red-600;
+    }
+    
+    .filter-tab:not(.active) {
+        @apply bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600;
+    }
+    
+    /* Contenedor principal mejorado */
+    .main-container {
+        @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/50;
+    }
+    
+    /* Texto mejorado */
+    .task-title {
+        @apply text-lg font-semibold text-gray-900 dark:text-white mb-2;
+    }
+    
+    .task-title.completed {
+        @apply line-through text-gray-500 dark:text-gray-400;
+    }
+    
+    .task-description {
+        @apply text-gray-600 dark:text-gray-300 mb-3 leading-relaxed;
+    }
+    
+    .task-meta {
+        @apply text-sm text-gray-500 dark:text-gray-400 flex items-center gap-4 flex-wrap;
+    }
+    
+    /* Formularios mejorados */
+    .form-input {
+        @apply block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors duration-200;
+    }
+    
+    .form-label {
+        @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+    }
+    
+    /* Alertas mejoradas */
+    .alert {
+        @apply rounded-lg p-4 mb-6 border-l-4;
+    }
+    
+    .alert-success {
+        @apply bg-green-50 dark:bg-green-900/20 border-green-400 text-green-800 dark:text-green-300;
+    }
+    
+    .alert-error {
+        @apply bg-red-50 dark:bg-red-900/20 border-red-400 text-red-800 dark:text-red-300;
+    }
+    
+    /* Navegación mejorada */
+    .nav-header {
+        @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50;
+    }
+    
+    /* Animaciones y transiciones */
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    .slide-up {
+        animation: slideUp 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { 
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Efectos de hover mejorados */
+    .hover-scale {
+        @apply transition-transform duration-200 hover:scale-105;
+    }
+    
+    .hover-glow:hover {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Gradientes de fondo */
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .bg-gradient-danger {
+        background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+    }
+}
+
+/* Estilos específicos para dark mode */
+@media (prefers-color-scheme: dark) {
+    .task-card {
+        @apply bg-gray-800/90;
+    }
+}
+
+/* Responsive mejoras */
+@media (max-width: 768px) {
+    .task-card {
+        @apply mx-2;
+    }
+    
+    .filter-tab {
+        @apply px-4 py-2 text-sm;
+    }
+}
